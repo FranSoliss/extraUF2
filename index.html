@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Extraordinària 23/24 - M9 - UF2</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .surface {
+            margin: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid #fff;
+            position: relative;
+        }
+        .rocket {
+            position: absolute;
+            width: 10vw;
+            top: -20vh; /* Ajustado para que comience fuera de la vista */
+        }
+        .hidden {
+            visibility: hidden;
+        }
+        @keyframes land {
+            0% {
+                top: -20vh;
+                transform: scale(0.5);
+            }
+            90% {
+                top: 70vh;
+                transform: scale(1.1);
+            }
+            100% {
+                top: 75vh;
+                transform: scale(1);
+            }
+        }
+        .play-button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="superficie.webp" alt="Superfície" class="surface">
+    <img src="coet.png" alt="Coet" class="rocket hidden" id="rocket">
+    
+    <!-- Botón SVG -->
+    <svg class="play-button" width="100" height="100" viewBox="0 0 100 100" onclick="startAnimation()">
+        <circle cx="50" cy="50" r="40" fill="#4CAF50"/>
+        <polygon points="40,30 70,50 40,70" fill="#FFFFFF"/>
+    </svg>
+    
+    <audio id="audio" src="so-aterratge.mp3"></audio>
+
+    <script>
+        function startAnimation() {
+            const rocket = document.getElementById('rocket');
+            const audio = document.getElementById('audio');
+            rocket.classList.remove('hidden');
+            rocket.style.animation = 'land 5s ease-in-out forwards';
+            audio.play();
+        }
+    </script>
+</body>
+</html>
